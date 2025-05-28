@@ -1,0 +1,218 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+    />
+
+    <title>Stitch Design - Search</title> <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f5] px-10 py-3">
+          <div class="flex items-center gap-4 text-[#111418]">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em]">Spanish Club</h2>
+          </div>
+          <div class="flex flex-1 justify-end items-center gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-[#111418] text-sm font-medium leading-normal" href="index.html">Home</a>
+              <a class="text-[#111418] text-sm font-medium leading-normal" href="galery.html">Gallery</a>
+              <a class="text-[#111418] text-sm font-medium leading-normal" href="abaut.html">About</a>
+            </div>
+            <a
+              href="search.html"
+              class="flex items-center justify-center w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg"
+              aria-label="Search"
+            >
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>
+            </a>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap justify-between gap-3 p-4 items-center">
+                <p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Buscar en el Blog</p>
+            </div>
+            
+            <div class="px-4 py-3">
+              <label class="flex flex-col min-w-40 h-12 w-full">
+                <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+                  <div
+                    class="text-[#60758a] flex border-none bg-[#f0f2f5] items-center justify-center pl-4 rounded-l-xl border-r-0"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <input
+                    id="searchInput" placeholder="Escribe aquí para buscar posts..."
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f5] focus:border-none h-full placeholder:text-[#60758a] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                    value=""
+                  />
+                </div>
+              </label>
+            </div>
+
+            <div id="searchResults" class="p-4">
+              </div>
+            
+            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Categorías</h2>
+            <div class="flex gap-3 p-3 flex-wrap pr-4">
+              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
+                <p class="text-[#111418] text-sm font-medium leading-normal">Club Events</p>
+              </div>
+              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
+                <p class="text-[#111418] text-sm font-medium leading-normal">Spanish Culture</p>
+              </div>
+              {/* ... más categorías ... */}
+            </div>
+            
+            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Archives</h2>
+            <div class="flex gap-3 p-3 flex-wrap pr-4">
+              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
+                <p class="text-[#111418] text-sm font-medium leading-normal">2023</p>
+              </div>
+               {/* ... más archivos ... */}
+            </div>
+
+            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Tags</h2>
+            <div class="flex gap-3 p-3 flex-wrap pr-4">
+                <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
+                    <p class="text-[#111418] text-sm font-medium leading-normal">Spanish</p>
+                </div>
+                {/* ... más tags ... */}
+            </div>
+
+            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Comments</h2>
+            <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCM8d_3NXyqxF9yxKvN20J6yMNnU4aQ2ZkVbPzCf9XohE8nFMjGF_zFqOxCRF2vm6yVSV9c0Qm_dd3cAUK_DR9faOHRruWJolV80RnulvN4dQYkTb7XpmZtx9vc_1m8-QlcTm2yUupPQEnYOB_5IX_dox8L6gigg-0XHMDScTbZLZvHSdxVcdHnOlBuaA5soyDln0G8c38gAjJgRaGB9NRMWaUm0Ub1cYhwDl6drH0J-DBlulPUJkgAq1PhIeAsEdTCwv_kolHCGFI");'
+              ></div>
+              <div class="flex h-full flex-1 flex-col items-start justify-start">
+                <div class="flex w-full flex-row items-start justify-start gap-x-3">
+                  <p class="text-[#111418] text-sm font-bold leading-normal tracking-[0.015em]">Isabella Rodriguez</p>
+                  <p class="text-[#60758a] text-sm font-normal leading-normal">2 days ago</p>
+                </div>
+                <p class="text-[#111418] text-sm font-normal leading-normal">I love the posts about Spanish culture! They are so informative and fun to read.</p>
+              </div>
+            </div>
+             {/* ... más comentarios ... */}
+          </div>
+        </div>
+        <footer class="flex justify-center border-t border-solid border-t-[#f0f2f5] mt-10">
+          <div class="flex max-w-[960px] flex-1 flex-col">
+            <div class="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="abaut.html">About Us</a>
+                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="contact.html">Contact</a>
+                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
+                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
+              </div>
+              <div class="flex flex-wrap justify-center gap-4">
+                <a href="#"> </a>
+              </div>
+              <p class="text-[#60758a] text-base font-normal leading-normal">@2024 Spanish Club. All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      // Datos de ejemplo para buscar (simulando entradas de blog)
+      const searchablePosts = [
+        { 
+          title: "Explorando la Arquitectura de Barcelona", 
+          content: "Descubre los estilos arquitectónicos únicos que definen Barcelona, desde las obras maestras de Gaudí hasta el encanto del Barrio Gótico.", 
+          link: "post1.html", // Deberías crear estas páginas o usar #
+          category: "Spanish Culture"
+        },
+        { 
+          title: "Un Viaje Culinario por España", 
+          content: "Deléitate con los ricos sabores de la cocina española, desde la paella hasta las tapas, y aprende sobre las tradiciones culinarias.", 
+          link: "post2.html",
+          category: "Spanish Culture"
+        },
+        { 
+          title: "Vive la Magia de La Tomatina", 
+          content: "Únete al mundialmente famoso festival de la pelea de tomates, La Tomatina, y sumérgete en la diversión y la emoción.", 
+          link: "post3.html",
+          category: "Club Events"
+        },
+        { 
+          title: "Noche de Cine Español: Reseña", 
+          content: "Un repaso a nuestra última noche de cine. Vimos 'Volver' de Almodóvar.", 
+          link: "event_review1.html",
+          category: "Club Events"
+        },
+        { 
+          title: "Aprendiendo Frases Básicas en Español", 
+          content: "Consejos para principiantes para empezar a hablar español y frases útiles para el día a día.", 
+          link: "language_tip1.html",
+          category: "Language Learning"
+        },
+        {
+          title: "Consejos para viajar a Madrid",
+          content: "Descubre los mejores lugares para visitar en Madrid, desde museos hasta parques y vida nocturna.",
+          link: "travel_madrid.html",
+          category: "Travel in Spain"
+        }
+      ];
+
+      const searchInput = document.getElementById('searchInput');
+      const searchResultsContainer = document.getElementById('searchResults');
+
+      searchInput.addEventListener('input', function(event) {
+        const searchTerm = event.target.value.toLowerCase();
+        searchResultsContainer.innerHTML = ''; // Limpiar resultados anteriores
+
+        if (searchTerm.trim() === '') {
+          // Opcional: mostrar algo cuando el campo está vacío, por ahora no muestra nada.
+          return;
+        }
+
+        const filteredPosts = searchablePosts.filter(post => {
+          return post.title.toLowerCase().includes(searchTerm) || 
+                 post.content.toLowerCase().includes(searchTerm) ||
+                 post.category.toLowerCase().includes(searchTerm);
+        });
+
+        if (filteredPosts.length > 0) {
+          filteredPosts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.className = 'mb-6 p-4 border border-gray-200 rounded-lg shadow-sm'; // Clases de Tailwind para estilo
+            
+            postElement.innerHTML = `
+              <h3 class="text-xl font-semibold text-[#111418] mb-2">${post.title}</h3>
+              <p class="text-gray-700 text-sm mb-1"><strong>Categoría:</strong> ${post.category}</p>
+              <p class="text-gray-600 mb-3">${post.content.substring(0, 150)}...</p> <a href="${post.link}" class="text-blue-600 hover:text-blue-800 font-medium">Leer más &rarr;</a>
+            `;
+            searchResultsContainer.appendChild(postElement);
+          });
+        } else {
+          searchResultsContainer.innerHTML = '<p class="text-gray-600">No se encontraron posts que coincidan con tu búsqueda.</p>';
+        }
+      });
+    </script>
+
+  </body>
+</html>
