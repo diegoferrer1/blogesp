@@ -1,218 +1,389 @@
 <html>
-  <head>
+<head>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
     <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+        rel="stylesheet"
+        as="style"
+        onload="this.rel='stylesheet'"
+        href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
     />
-
-    <title>Stitch Design - Search</title> <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-
+    <title>Stitch Design - Search</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Estilo para asegurar que el scroll-behavior funcione correctamente */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Pequeña animación para el menú móvil */
+        #mobileMenu.hidden {
+            transform: translateX(-100%);
+        }
+        #mobileMenu {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
     <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f5] px-10 py-3">
-          <div class="flex items-center gap-4 text-[#111418]">
-            <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-            <h2 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em]">Spanish Club</h2>
-          </div>
-          <div class="flex flex-1 justify-end items-center gap-8">
-            <div class="flex items-center gap-9">
-              <a class="text-[#111418] text-sm font-medium leading-normal" href="index.html">Home</a>
-              <a class="text-[#111418] text-sm font-medium leading-normal" href="galery.html">Gallery</a>
-              <a class="text-[#111418] text-sm font-medium leading-normal" href="abaut.html">About</a>
-            </div>
-            <a
-              href="search.html"
-              class="flex items-center justify-center w-10 h-10 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg"
-              aria-label="Search"
-            >
-              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-              </svg>
-            </a>
-          </div>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div class="flex flex-wrap justify-between gap-3 p-4 items-center">
-                <p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Buscar en el Blog</p>
-            </div>
-            
-            <div class="px-4 py-3">
-              <label class="flex flex-col min-w-40 h-12 w-full">
-                <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
-                  <div
-                    class="text-[#60758a] flex border-none bg-[#f0f2f5] items-center justify-center pl-4 rounded-l-xl border-r-0"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path
-                        d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <input
-                    id="searchInput" placeholder="Escribe aquí para buscar posts..."
-                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f5] focus:border-none h-full placeholder:text-[#60758a] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-                    value=""
-                  />
+        <div class="layout-container flex h-full grow flex-col">
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f5] px-4 sm:px-10 py-3 sticky top-0 bg-white z-40">
+                <div class="flex items-center gap-4 text-[#111418]">
+                    <div class="size-6 ">
+                        <svg viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em]">Spanish Club</h2>
                 </div>
-              </label>
+                <div class="flex flex-1 justify-end items-center gap-4 md:gap-8">
+                    <nav class="hidden md:flex items-center gap-6 lg:gap-9">
+                        <a class="text-[#111418] text-sm font-medium " href="index.html">Home</a>
+                        <a class=" text-sm font-bold leading-normal" href="galery.html">Gallery</a> <a class="text-[#111418] text-sm font-medium leading-normal hover:text-blue-600 transition-colors" href="abaut.html">About</a>
+                    </nav>
+                    <a href="search.html" class="flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors" aria-label="Search">
+                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                        </svg>
+                    </a>
+                    <button id="mobileMenuButton" class="md:hidden flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg" aria-label="Open menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div id="mobileMenu" class="hidden fixed inset-0 bg-white z-50 p-6 shadow-lg md:hidden">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-[#111418] text-2xl font-bold">Menú</h2>
+                    <button id="closeMobileMenuButton" class="p-2 text-gray-600 hover:text-gray-800">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-5">
+                    <a class="text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100" href="index.html">Home</a>
+                    <a class="text-blue-600 text-lg font-bold hover:text-blue-700 transition-colors py-2 border-b border-gray-100" href="galery.html">Gallery</a>
+                    <a class="text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100" href="abaut.html">About</a>
+                    <a class="text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100" href="search.html">Search Page</a>
+                    <a class="text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2" href="contact.html">Contact</a>
+                </nav>
             </div>
 
-            <div id="searchResults" class="p-4">
-              </div>
-            
-            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Categorías</h2>
-            <div class="flex gap-3 p-3 flex-wrap pr-4">
-              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
-                <p class="text-[#111418] text-sm font-medium leading-normal">Club Events</p>
-              </div>
-              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
-                <p class="text-[#111418] text-sm font-medium leading-normal">Spanish Culture</p>
-              </div>
-              {/* ... más categorías ... */}
-            </div>
-            
-            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Archives</h2>
-            <div class="flex gap-3 p-3 flex-wrap pr-4">
-              <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
-                <p class="text-[#111418] text-sm font-medium leading-normal">2023</p>
-              </div>
-               {/* ... más archivos ... */}
-            </div>
+            <main class="px-4 sm:px-8 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <div class="flex flex-wrap justify-between gap-3 p-4 items-center">
+                        <p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Buscar en el Blog</p>
+                    </div>
+                    
+                    <div class="px-4 py-3">
+                        <label class="flex flex-col min-w-40 h-12 w-full">
+                            <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+                                <div class="text-[#60758a] flex border-none bg-[#f0f2f5] items-center justify-center pl-4 rounded-l-xl border-r-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                                        <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                                    </svg>
+                                </div>
+                                <input
+                                    id="searchInput" placeholder="Escribe aquí para buscar posts..."
+                                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border-none bg-[#f0f2f5] focus:border-none h-full placeholder:text-[#60758a] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                                    value=""
+                                />
+                            </div>
+                        </label>
+                    </div>
 
-            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Tags</h2>
-            <div class="flex gap-3 p-3 flex-wrap pr-4">
-                <div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] pl-4 pr-4">
-                    <p class="text-[#111418] text-sm font-medium leading-normal">Spanish</p>
-                </div>
-                {/* ... más tags ... */}
-            </div>
+                    <div id="searchResults" class="p-4 min-h-[100px]">
+                        </div>
+                    
+                    <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Categorías</h2>
+                    <div id="categoriesContainer" class="flex gap-3 p-3 flex-wrap pr-4">
+                        </div>
+                    
+                    <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Archives</h2>
+                    <div id="archivesContainer" class="flex gap-3 p-3 flex-wrap pr-4">
+                        </div>
 
-            <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Comments</h2>
-            <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
-              <div
-                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCM8d_3NXyqxF9yxKvN20J6yMNnU4aQ2ZkVbPzCf9XohE8nFMjGF_zFqOxCRF2vm6yVSV9c0Qm_dd3cAUK_DR9faOHRruWJolV80RnulvN4dQYkTb7XpmZtx9vc_1m8-QlcTm2yUupPQEnYOB_5IX_dox8L6gigg-0XHMDScTbZLZvHSdxVcdHnOlBuaA5soyDln0G8c38gAjJgRaGB9NRMWaUm0Ub1cYhwDl6drH0J-DBlulPUJkgAq1PhIeAsEdTCwv_kolHCGFI");'
-              ></div>
-              <div class="flex h-full flex-1 flex-col items-start justify-start">
-                <div class="flex w-full flex-row items-start justify-start gap-x-3">
-                  <p class="text-[#111418] text-sm font-bold leading-normal tracking-[0.015em]">Isabella Rodriguez</p>
-                  <p class="text-[#60758a] text-sm font-normal leading-normal">2 days ago</p>
+                    <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Tags</h2>
+                    <div id="tagsContainer" class="flex gap-3 p-3 flex-wrap pr-4">
+                        </div>
+
+                    <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Comments</h2>
+                    <div class="flex w-full flex-row items-start justify-start gap-3 p-4 border-b border-gray-200">
+                        <img src="https://placehold.co/40x40/7F9CF5/FFFFFF?text=IR" alt="User Isabella Rodriguez" class="rounded-full w-10 h-10 shrink-0 object-cover">
+                        <div class="flex h-full flex-1 flex-col items-start justify-start">
+                            <div class="flex w-full flex-row items-start justify-start gap-x-3">
+                                <p class="text-[#111418] text-sm font-bold leading-normal tracking-[0.015em]">Isabella Rodriguez</p>
+                                <p class="text-[#60758a] text-sm font-normal leading-normal">2 days ago</p>
+                            </div>
+                            <p class="text-[#111418] text-sm font-normal leading-normal">I love the posts about Spanish culture! They are so informative and fun to read.</p>
+                        </div>
+                    </div>
+                    <div class="flex w-full flex-row items-start justify-start gap-3 p-4 border-b border-gray-200">
+                        <img src="https://placehold.co/40x40/FBBF24/FFFFFF?text=MP" alt="User Miguel Pérez" class="rounded-full w-10 h-10 shrink-0 object-cover">
+                        <div class="flex h-full flex-1 flex-col items-start justify-start">
+                            <div class="flex w-full flex-row items-start justify-start gap-x-3">
+                                <p class="text-[#111418] text-sm font-bold leading-normal tracking-[0.015em]">Miguel Pérez</p>
+                                <p class="text-[#60758a] text-sm font-normal leading-normal">1 week ago</p>
+                            </div>
+                            <p class="text-[#111418] text-sm font-normal leading-normal">The article on La Tomatina was fantastic! Makes me want to go next year. Any tips for accommodation?</p>
+                        </div>
+                    </div>
+                    <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
+                        <img src="https://placehold.co/40x40/34D399/FFFFFF?text=LC" alt="User Laura Chen" class="rounded-full w-10 h-10 shrink-0 object-cover">
+                        <div class="flex h-full flex-1 flex-col items-start justify-start">
+                            <div class="flex w-full flex-row items-start justify-start gap-x-3">
+                                <p class="text-[#111418] text-sm font-bold leading-normal tracking-[0.015em]">Laura Chen</p>
+                                <p class="text-[#60758a] text-sm font-normal leading-normal">3 weeks ago</p>
+                            </div>
+                            <p class="text-[#111418] text-sm font-normal leading-normal">Great tips for learning Spanish phrases. Could you do a post on common mistakes to avoid?</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-[#111418] text-sm font-normal leading-normal">I love the posts about Spanish culture! They are so informative and fun to read.</p>
-              </div>
-            </div>
-             {/* ... más comentarios ... */}
-          </div>
+            </main>
+            <footer class="flex justify-center border-t border-solid border-t-[#f0f2f5] mt-10">
+                <div class="flex max-w-[960px] flex-1 flex-col">
+                    <div class="flex flex-col gap-6 px-5 py-10 text-center @container">
+                        <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
+                            <a class="text-[#60758a] text-base font-normal leading-normal min-w-40 hover:text-blue-600" href="abaut.html">About Us</a>
+                            <a class="text-[#60758a] text-base font-normal leading-normal min-w-40 hover:text-blue-600" href="contact.html">Contact</a>
+                            <a class="text-[#60758a] text-base font-normal leading-normal min-w-40 hover:text-blue-600" href="#">Privacy Policy</a>
+                            <a class="text-[#60758a] text-base font-normal leading-normal min-w-40 hover:text-blue-600" href="#">Terms of Service</a>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            </div>
+                        <p class="text-[#60758a] text-base font-normal leading-normal">©2024 Spanish Club. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <footer class="flex justify-center border-t border-solid border-t-[#f0f2f5] mt-10">
-          <div class="flex max-w-[960px] flex-1 flex-col">
-            <div class="flex flex-col gap-6 px-5 py-10 text-center @container">
-              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="abaut.html">About Us</a>
-                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="contact.html">Contact</a>
-                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
-                <a class="text-[#60758a] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
-              </div>
-              <div class="flex flex-wrap justify-center gap-4">
-                <a href="#"> </a>
-              </div>
-              <p class="text-[#60758a] text-base font-normal leading-normal">@2024 Spanish Club. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
-      </div>
     </div>
 
     <script>
-      // Datos de ejemplo para buscar (simulando entradas de blog)
-      const searchablePosts = [
-        { 
-          title: "Explorando la Arquitectura de Barcelona", 
-          content: "Descubre los estilos arquitectónicos únicos que definen Barcelona, desde las obras maestras de Gaudí hasta el encanto del Barrio Gótico.", 
-          link: "post1.html", // Deberías crear estas páginas o usar #
-          category: "Spanish Culture"
-        },
-        { 
-          title: "Un Viaje Culinario por España", 
-          content: "Deléitate con los ricos sabores de la cocina española, desde la paella hasta las tapas, y aprende sobre las tradiciones culinarias.", 
-          link: "post2.html",
-          category: "Spanish Culture"
-        },
-        { 
-          title: "Vive la Magia de La Tomatina", 
-          content: "Únete al mundialmente famoso festival de la pelea de tomates, La Tomatina, y sumérgete en la diversión y la emoción.", 
-          link: "post3.html",
-          category: "Club Events"
-        },
-        { 
-          title: "Noche de Cine Español: Reseña", 
-          content: "Un repaso a nuestra última noche de cine. Vimos 'Volver' de Almodóvar.", 
-          link: "event_review1.html",
-          category: "Club Events"
-        },
-        { 
-          title: "Aprendiendo Frases Básicas en Español", 
-          content: "Consejos para principiantes para empezar a hablar español y frases útiles para el día a día.", 
-          link: "language_tip1.html",
-          category: "Language Learning"
-        },
-        {
-          title: "Consejos para viajar a Madrid",
-          content: "Descubre los mejores lugares para visitar en Madrid, desde museos hasta parques y vida nocturna.",
-          link: "travel_madrid.html",
-          category: "Travel in Spain"
+    document.addEventListener('DOMContentLoaded', function() {
+        // Datos de ejemplo para buscar (simulando entradas de blog)
+        const searchablePosts = [
+            { 
+                title: "Explorando la Arquitectura de Barcelona", 
+                content: "Descubre los estilos arquitectónicos únicos que definen Barcelona, desde las obras maestras de Gaudí hasta el encanto del Barrio Gótico.", 
+                link: "post1.html", 
+                category: "Spanish Culture",
+                date: "2024-05-15",
+                tags: ["arquitectura", "barcelona", "gaudi", "cultura"]
+            },
+            { 
+                title: "Un Viaje Culinario por España", 
+                content: "Deléitate con los ricos sabores de la cocina española, desde la paella hasta las tapas, y aprende sobre las tradiciones culinarias.", 
+                link: "post2.html",
+                category: "Spanish Culture",
+                date: "2024-04-20",
+                tags: ["comida", "paella", "tapas", "cocina", "cultura"]
+            },
+            { 
+                title: "Vive la Magia de La Tomatina", 
+                content: "Únete al mundialmente famoso festival de la pelea de tomates, La Tomatina, y sumérgete en la diversión y la emoción.", 
+                link: "post3.html",
+                category: "Club Events",
+                date: "2023-08-30",
+                tags: ["festival", "tomatina", "eventos", "fiesta"]
+            },
+            { 
+                title: "Noche de Cine Español: Reseña de 'Volver'", 
+                content: "Un repaso a nuestra última noche de cine. Vimos 'Volver' de Almodóvar, una joya del cine español.", 
+                link: "event_review1.html",
+                category: "Club Events",
+                date: "2024-03-10",
+                tags: ["cine", "almodovar", "eventos", "reseña"]
+            },
+            { 
+                title: "Aprendiendo Frases Básicas en Español", 
+                content: "Consejos para principiantes para empezar a hablar español y frases útiles para el día a día. ¡Anímate a practicar!", 
+                link: "language_tip1.html",
+                category: "Language Learning",
+                date: "2024-02-01",
+                tags: ["idioma", "aprender español", "frases", "educación"]
+            },
+            {
+                title: "Consejos para viajar a Madrid",
+                content: "Descubre los mejores lugares para visitar en Madrid, desde museos emblemáticos hasta parques con encanto y una vibrante vida nocturna.",
+                link: "travel_madrid.html",
+                category: "Travel in Spain",
+                date: "2023-11-25",
+                tags: ["viajes", "madrid", "turismo", "españa"]
+            },
+            {
+                title: "Fiesta de Bienvenida del Club de Español",
+                content: "¡No te pierdas nuestra fiesta anual de bienvenida! Una gran oportunidad para conocer a otros miembros y practicar español.",
+                link: "event_welcome.html",
+                category: "Club Events",
+                date: "2024-09-05",
+                tags: ["eventos", "fiesta", "bienvenida", "club"]
+            }
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const searchResultsContainer = document.getElementById('searchResults');
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        const archivesContainer = document.getElementById('archivesContainer');
+        const tagsContainer = document.getElementById('tagsContainer');
+
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenuButton = document.getElementById('closeMobileMenuButton');
+
+        // --- Mobile Menu Logic ---
+        if (mobileMenuButton && mobileMenu && closeMobileMenuButton) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            });
+
+            closeMobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scroll
+            });
         }
-      ];
+        
+        // --- Search and Display Logic ---
 
-      const searchInput = document.getElementById('searchInput');
-      const searchResultsContainer = document.getElementById('searchResults');
+        // Function to display posts
+        function displayPosts(postsToDisplay) {
+            searchResultsContainer.innerHTML = ''; // Clear previous results
 
-      searchInput.addEventListener('input', function(event) {
-        const searchTerm = event.target.value.toLowerCase();
-        searchResultsContainer.innerHTML = ''; // Limpiar resultados anteriores
+            if (postsToDisplay.length > 0) {
+                postsToDisplay.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.className = 'mb-6 p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 ease-in-out';
+                    
+                    const postDate = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 
-        if (searchTerm.trim() === '') {
-          // Opcional: mostrar algo cuando el campo está vacío, por ahora no muestra nada.
-          return;
+                    postElement.innerHTML = `
+                        <h3 class="text-xl font-semibold text-blue-700 hover:text-blue-900 mb-1 transition-colors"><a href="${post.link}">${post.title}</a></h3>
+                        <p class="text-xs text-gray-500 mb-2">
+                            <span class="font-medium">Categoría:</span> <span class="category-filter cursor-pointer hover:text-blue-600" data-category="${post.category}">${post.category}</span> | 
+                            <span class="font-medium">Fecha:</span> ${postDate}
+                        </p>
+                        <p class="text-gray-700 text-sm mb-3">${post.content.substring(0, 180)}${post.content.length > 180 ? '...' : ''}</p>
+                        <div class="mb-3">
+                            ${post.tags.map(tag => `<span class="inline-block bg-gray-200 hover:bg-gray-300 transition-colors rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-1 cursor-pointer tag-filter" data-tag="${tag.toLowerCase()}">${tag.charAt(0).toUpperCase() + tag.slice(1)}</span>`).join('')}
+                        </div>
+                        <a href="${post.link}" class="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors">Leer más →</a>
+                    `;
+                    searchResultsContainer.appendChild(postElement);
+                });
+            } else {
+                searchResultsContainer.innerHTML = '<p class="text-gray-600 p-4 text-center">No se encontraron posts que coincidan con tu búsqueda.</p>';
+            }
         }
 
-        const filteredPosts = searchablePosts.filter(post => {
-          return post.title.toLowerCase().includes(searchTerm) || 
-                 post.content.toLowerCase().includes(searchTerm) ||
-                 post.category.toLowerCase().includes(searchTerm);
-        });
+        // Main search function
+        function handleSearch(term) {
+            const searchTerm = term.toLowerCase().trim();
+            if (searchTerm === '') {
+                // Display a default message or all posts. For now, a message.
+                if (searchResultsContainer) {
+                     searchResultsContainer.innerHTML = '<p class="text-gray-500 p-4 text-center">Escribe algo en el buscador para encontrar posts, o selecciona una categoría, archivo o etiqueta de la lista.</p>';
+                }
+                return;
+            }
 
-        if (filteredPosts.length > 0) {
-          filteredPosts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.className = 'mb-6 p-4 border border-gray-200 rounded-lg shadow-sm'; // Clases de Tailwind para estilo
+            const filteredPosts = searchablePosts.filter(post => {
+                return post.title.toLowerCase().includes(searchTerm) || 
+                       post.content.toLowerCase().includes(searchTerm) ||
+                       post.category.toLowerCase().includes(searchTerm) ||
+                       post.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+            });
+            displayPosts(filteredPosts);
+        }
+
+        // Event listener for search input
+        if (searchInput) {
+            searchInput.addEventListener('input', function(event) {
+                handleSearch(event.target.value);
+            });
+        }
+
+        // --- Populate Dynamic Filter Sections ---
+        function populateClickableFilters(container, items, filterType, itemKey = null) {
+            if (!container) return;
+            container.innerHTML = ''; // Clear existing static items
             
-            postElement.innerHTML = `
-              <h3 class="text-xl font-semibold text-[#111418] mb-2">${post.title}</h3>
-              <p class="text-gray-700 text-sm mb-1"><strong>Categoría:</strong> ${post.category}</p>
-              <p class="text-gray-600 mb-3">${post.content.substring(0, 150)}...</p> <a href="${post.link}" class="text-blue-600 hover:text-blue-800 font-medium">Leer más &rarr;</a>
-            `;
-            searchResultsContainer.appendChild(postElement);
-          });
-        } else {
-          searchResultsContainer.innerHTML = '<p class="text-gray-600">No se encontraron posts que coincidan con tu búsqueda.</p>';
-        }
-      });
-    </script>
+            const uniqueItems = [...new Set(items.map(item => itemKey ? item[itemKey] : item))];
 
-  </body>
+            uniqueItems.forEach(itemValue => {
+                const element = document.createElement('div');
+                element.className = 'flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-xl bg-[#f0f2f5] hover:bg-gray-300 transition-colors pl-4 pr-4 cursor-pointer';
+                element.innerHTML = `<p class="text-[#111418] text-sm font-medium leading-normal">${itemValue}</p>`;
+                
+                element.addEventListener('click', () => {
+                    if (searchInput) {
+                        searchInput.value = itemValue; 
+                        handleSearch(itemValue);      
+                        searchInput.focus();
+                        // Optional: Scroll to search input or results
+                        // searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        searchResultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    }
+                });
+                container.appendChild(element);
+            });
+        }
+
+        // Populate Categories
+        if (categoriesContainer) {
+            const uniqueCategories = searchablePosts.map(post => post.category);
+            populateClickableFilters(categoriesContainer, uniqueCategories, 'category');
+        }
+
+        // Populate Archives (Years)
+        if (archivesContainer) {
+            const uniqueYears = searchablePosts.map(post => new Date(post.date).getFullYear()).sort((a,b) => b - a); // Sort descending
+            populateClickableFilters(archivesContainer, uniqueYears, 'year');
+        }
+
+        // Populate Tags
+        if (tagsContainer) {
+            const allTags = searchablePosts.flatMap(post => post.tags.map(tag => tag.charAt(0).toUpperCase() + tag.slice(1).toLowerCase()));
+            populateClickableFilters(tagsContainer, allTags, 'tag');
+        }
+
+        // Event delegation for tags and categories within search results
+        if (searchResultsContainer) {
+            searchResultsContainer.addEventListener('click', function(event) {
+                let targetElement = event.target;
+                // Check if the clicked element or its parent is a filter
+                while(targetElement && targetElement !== searchResultsContainer) {
+                    if (targetElement.classList.contains('tag-filter')) {
+                        const tagToSearch = targetElement.dataset.tag;
+                        if (searchInput) {
+                            searchInput.value = tagToSearch;
+                            handleSearch(tagToSearch);
+                            // searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                             searchResultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                        return; // Exit once handled
+                    }
+                    if (targetElement.classList.contains('category-filter')) {
+                        const categoryToSearch = targetElement.dataset.category;
+                         if (searchInput) {
+                            searchInput.value = categoryToSearch;
+                            handleSearch(categoryToSearch);
+                            // searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            searchResultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                        return; // Exit once handled
+                    }
+                    targetElement = targetElement.parentElement;
+                }
+            });
+        }
+        
+        // Initial message in search results if search input is empty
+        if (searchResultsContainer && searchInput && searchInput.value.trim() === '') {
+            searchResultsContainer.innerHTML = '<p class="text-gray-500 p-4 text-center">Escribe algo en el buscador para encontrar posts, o selecciona una categoría, archivo o etiqueta de la lista.</p>';
+        }
+
+    });
+    </script>
+</body>
 </html>
