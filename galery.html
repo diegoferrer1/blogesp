@@ -1,15 +1,15 @@
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería del Club de Español</title>
+    <title>Galería - Club Español</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link rel="stylesheet" as="style" onload="this.rel='stylesheet'"
         href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="icon" type="image/x-icon"
-        href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QACD2IVQAAABmSURBVDjLY2AYBaNgFIwCAAKM9gJMA4J1QFxKAeY3SDYQn2BRAZEgDcUQG1gEVIMUIJmNYQYV0FCXUIYV0FCXUMAbV0CXUMAZEPWoLCQAgwJQLDBsYWQGAHw8BUgNSQOIAAAAAElFTkSuQmCC" />
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
     <style>
         /* Estilos adicionales para el modal y la galería */
         .modal-active {
@@ -43,6 +43,48 @@
         .modal-content::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+        
+        /* Estilo para asegurar que el scroll-behavior funcione correctamente */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body.overflow-hidden {
+            overflow: hidden;
+        }
+        
+        /* Estilos para el menú hamburguesa y su animación */
+        #mobileMenu {
+            /* El menú se deslizará desde la derecha */
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #mobileMenu.menu-is-open {
+            /* El menú es visible en la pantalla */
+            transform: translateX(0);
+        }
+
+        #mobileMenuButton {
+            z-index: 60; /* Asegura que el botón esté sobre el menú cuando se abre */
+        }
+
+        #mobileMenuButton .line {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform-origin: center;
+        }
+
+        #mobileMenuButton.active .line1 {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        #mobileMenuButton.active .line2 {
+            opacity: 0;
+        }
+
+        #mobileMenuButton.active .line3 {
+            transform: translateY(-6px) rotate(-45deg);
+        }
     </style>
 </head>
 
@@ -52,26 +94,16 @@
             <header
                 class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f5] px-4 sm:px-10 py-3 sticky top-0 bg-white z-40">
                 <div class="flex items-center gap-4 text-[#111418]">
-                    <div class="size-6 "> <svg viewBox="0 0 48 48" fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h2 class="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em]">Spanish Club</h2>
+                   
+                   <a href="index.html">
+                    <h2 class="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em]">Club Español</h2>
+                   </a>
+                   
                 </div>
                 <div class="flex flex-1 justify-end items-center gap-4 md:gap-8">
-                    <nav class="hidden md:flex items-center gap-6 lg:gap-9"> <a
-                            class="text-[#111418] text-sm font-medium leading-normal hover:text-blue-600 transition-colors"
-                            href="index.html">Home</a>
-                        <a class=" text-sm font-bold leading-normal" href="galery.html">Gallery</a> <a
-                            class="text-[#111418] text-sm font-medium leading-normal hover:text-blue-600 transition-colors"
-                            href="abaut.html">About</a>
-                    </nav>
                     <a href="search.html"
                         class="flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors"
-                        aria-label="Search">
+                        aria-label="Buscar">
                         <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -79,23 +111,43 @@
                         </svg>
                     </a>
                     <button id="mobileMenuButton"
-                        class="md:hidden flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg"
-                        aria-label="Open menu">
+                        class="flex items-center justify-center w-10 h-10 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg"
+                        aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                            <path class="line line1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16"></path>
+                            <path class="line line2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 12h16"></path>
+                            <path class="line line3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </header>
-            <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-solid border-b-[#f0f2f5] py-2">
-                <a class="block px-4 py-2 text-[#111418] text-sm font-medium leading-normal hover:bg-gray-100"
-                    href="index.html">Home</a>
-                <a class="block px-4 py-2 text-blue-600 text-sm font-bold leading-normal bg-gray-50"
-                    href="galery.html">Gallery</a>
-                <a class="block px-4 py-2 text-[#111418] text-sm font-medium leading-normal hover:bg-gray-100"
-                    href="abaut.html">About</a>
+
+            <!-- Panel del Menú Hamburguesa -->
+            <div id="mobileMenu" class="fixed top-0 right-0 bottom-0 bg-white z-50 p-6 shadow-lg w-72">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-[#111418] text-2xl font-bold">Menú</h2>
+                    <button id="closeMobileMenuButton" class="p-2 text-gray-600 hover:text-gray-800" aria-label="Cerrar menú">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="flex flex-col gap-5">
+                    <a class="nav-link text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
+                        href="index.html">Inicio</a>
+                    <a class="nav-link text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
+                        href="galery.html">Galería</a>
+                    <a class="nav-link text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2 border-b border-gray-100"
+                        href="abaut.html">Acerca de</a>
+                    <a class="nav-link text-[#111418] text-lg font-medium hover:text-blue-600 transition-colors py-2"
+                        href="abaut.html#contacto">Hazte Miembro</a>
+                </nav>
             </div>
 
             <main class="px-4 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
@@ -133,10 +185,9 @@
     </div>
 
     <script>
-        // Datos de los eventos y sus imágenes
-        // Deberás reemplazar estas URLs con las de tus imágenes reales.
-        const eventsData = [
-            {
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DATOS DE LA GALERÍA ---
+            const eventsData = [{
                 id: "noche-de-tapas",
                 name: "Noche de Tapas",
                 description: "Deliciosas tapas y buena compañía.",
@@ -148,8 +199,7 @@
                     "https://placehold.co/800x600/E64A19/FFFFFF?text=Tapas+4",
                     "https://placehold.co/800x600/FFEB3B/000000?text=Tapas+5"
                 ]
-            },
-            {
+            }, {
                 id: "fiesta-de-verano",
                 name: "Fiesta de Verano",
                 description: "Celebrando el sol y la amistad.",
@@ -159,8 +209,7 @@
                     "https://placehold.co/800x600/1976D2/FFFFFF?text=Verano+2",
                     "https://placehold.co/800x600/0D47A1/FFFFFF?text=Verano+3"
                 ]
-            },
-            {
+            }, {
                 id: "clase-de-cocina",
                 name: "Clase de Cocina",
                 description: "Aprendiendo recetas tradicionales.",
@@ -171,8 +220,7 @@
                     "https://placehold.co/800x600/1B5E20/FFFFFF?text=Cocina+3",
                     "https://placehold.co/800x600/8BC34A/000000?text=Cocina+4"
                 ]
-            },
-            {
+            }, {
                 id: "excursion-a-sevilla",
                 name: "Excursión a Sevilla",
                 description: "Descubriendo la belleza de Andalucía.",
@@ -184,8 +232,7 @@
                     "https://placehold.co/800x600/4A148C/FFFFFF?text=Sevilla+4",
                     "https://placehold.co/800x600/BA68C8/FFFFFF?text=Sevilla+5"
                 ]
-            },
-            {
+            }, {
                 id: "concurso-de-baile",
                 name: "Concurso de Baile",
                 description: "Ritmo y diversión en la pista.",
@@ -194,8 +241,7 @@
                     "https://placehold.co/800x600/E91E63/FFFFFF?text=Baile+1",
                     "https://placehold.co/800x600/C2185B/FFFFFF?text=Baile+2"
                 ]
-            },
-            {
+            }, {
                 id: "dia-de-peliculas",
                 name: "Día de Películas",
                 description: "Tarde de cine y palomitas.",
@@ -205,112 +251,150 @@
                     "https://placehold.co/800x600/455A64/FFFFFF?text=Peli+2",
                     "https://placehold.co/800x600/263238/FFFFFF?text=Peli+3"
                 ]
+            }];
+            
+            // --- ELEMENTOS DEL DOM ---
+            const eventGrid = document.getElementById('eventGrid');
+            const modal = document.getElementById('galleryModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalImageGrid = document.getElementById('modalImageGrid');
+            const closeModalButton = document.getElementById('closeModalButton');
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeMobileMenuButton = document.getElementById('closeMobileMenuButton');
+
+            // --- LÓGICA DE LA GALERÍA ---
+            function renderEventCards() {
+                if (!eventGrid) return;
+                eventGrid.innerHTML = '';
+                eventsData.forEach(event => {
+                    const card = document.createElement('div');
+                    card.className = 'event-item flex flex-col gap-3 pb-3 cursor-pointer group rounded-lg overflow-hidden bg-gray-50 hover:shadow-xl';
+                    card.setAttribute('data-event-id', event.id);
+
+                    const imageDiv = document.createElement('div');
+                    imageDiv.className = 'w-full bg-center bg-no-repeat aspect-[4/3] bg-cover transition-transform duration-300 group-hover:scale-105';
+                    imageDiv.style.backgroundImage = `url('${event.thumbnail}')`;
+                    imageDiv.setAttribute('role', 'img');
+                    imageDiv.setAttribute('aria-label', event.name);
+
+                    const textContainer = document.createElement('div');
+                    textContainer.className = 'p-3';
+
+                    const title = document.createElement('p');
+                    title.className = 'text-[#111418] text-base font-semibold leading-normal mb-1';
+                    title.textContent = event.name;
+
+                    const description = document.createElement('p');
+                    description.className = 'text-gray-600 text-xs font-normal leading-normal';
+                    description.textContent = event.description;
+
+                    textContainer.appendChild(title);
+                    textContainer.appendChild(description);
+                    card.appendChild(imageDiv);
+                    card.appendChild(textContainer);
+
+                    card.addEventListener('click', () => openModal(event.id));
+                    eventGrid.appendChild(card);
+                });
             }
-        ];
 
-        const eventGrid = document.getElementById('eventGrid');
-        const modal = document.getElementById('galleryModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalImageGrid = document.getElementById('modalImageGrid');
-        const closeModalButton = document.getElementById('closeModalButton');
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
+            function openModal(eventId) {
+                const event = eventsData.find(e => e.id === eventId);
+                if (!event || !modal || !modalTitle || !modalImageGrid) return;
 
-        // Función para generar las tarjetas de evento
-        function renderEventCards() {
-            eventGrid.innerHTML = ''; // Limpiar cuadrícula existente
-            eventsData.forEach(event => {
-                const card = document.createElement('div');
-                card.className = 'event-item flex flex-col gap-3 pb-3 cursor-pointer group rounded-lg overflow-hidden bg-gray-50 hover:shadow-xl';
-                card.setAttribute('data-event-id', event.id);
+                modalTitle.textContent = event.name;
+                modalImageGrid.innerHTML = ''; 
 
-                const imageDiv = document.createElement('div');
-                imageDiv.className = 'w-full bg-center bg-no-repeat aspect-[4/3] bg-cover transition-transform duration-300 group-hover:scale-105';
-                imageDiv.style.backgroundImage = `url('${event.thumbnail}')`;
-                imageDiv.setAttribute('role', 'img');
-                imageDiv.setAttribute('aria-label', event.name);
+                event.images.forEach(imgSrc => {
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'aspect-video bg-gray-200 rounded-lg overflow-hidden';
 
-                const textContainer = document.createElement('div');
-                textContainer.className = 'p-3';
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = `Foto de ${event.name}`;
+                    img.className = 'w-full h-full object-cover transition-transform duration-300 hover:scale-110';
+                    img.loading = 'lazy';
+                    img.onerror = function () {
+                        this.onerror = null;
+                        this.src = 'https://placehold.co/800x600/CCCCCC/FFFFFF?text=Error+al+cargar';
+                        this.alt = 'Imagen no disponible';
+                    };
+                    imgContainer.appendChild(img);
+                    modalImageGrid.appendChild(imgContainer);
+                });
 
-                const title = document.createElement('p');
-                title.className = 'text-[#111418] text-base font-semibold leading-normal mb-1';
-                title.textContent = event.name;
+                modal.classList.remove('hidden');
+                modal.classList.add('modal-active');
+                document.body.classList.add('overflow-hidden');
+            }
 
-                const description = document.createElement('p');
-                description.className = 'text-gray-600 text-xs font-normal leading-normal';
-                description.textContent = event.description;
+            function closeModal() {
+                 if (!modal) return;
+                modal.classList.add('hidden');
+                modal.classList.remove('modal-active');
+                document.body.classList.remove('overflow-hidden');
+            }
+            
+            // --- LÓGICA DEL MENÚ MÓVIL ---
+            function openMenu() {
+                if(!mobileMenu || !mobileMenuButton) return;
+                mobileMenu.classList.add('menu-is-open');
+                mobileMenuButton.classList.add('active');
+                mobileMenuButton.setAttribute('aria-expanded', 'true');
+                mobileMenuButton.setAttribute('aria-label', 'Cerrar menú');
+                document.body.classList.add('overflow-hidden');
+            }
 
-                textContainer.appendChild(title);
-                textContainer.appendChild(description);
-                card.appendChild(imageDiv);
-                card.appendChild(textContainer);
+            function closeMenu() {
+                 if(!mobileMenu || !mobileMenuButton) return;
+                mobileMenu.classList.remove('menu-is-open');
+                mobileMenuButton.classList.remove('active');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.setAttribute('aria-label', 'Abrir menú');
+                document.body.classList.remove('overflow-hidden');
+            }
 
-                card.addEventListener('click', () => openModal(event.id));
-                eventGrid.appendChild(card);
+            // --- EVENT LISTENERS ---
+            if (mobileMenuButton && mobileMenu && closeMobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('menu-is-open')) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+                closeMobileMenuButton.addEventListener('click', closeMenu);
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+            }
+
+            if(closeModalButton) closeModalButton.addEventListener('click', closeModal);
+            if(modal) modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
             });
-        }
-
-        // Función para abrir el modal y cargar imágenes
-        function openModal(eventId) {
-            const event = eventsData.find(e => e.id === eventId);
-            if (!event) return;
-
-            modalTitle.textContent = event.name;
-            modalImageGrid.innerHTML = ''; // Limpiar imágenes anteriores
-
-            event.images.forEach(imgSrc => {
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'aspect-video bg-gray-200 rounded-lg overflow-hidden';
-
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.alt = `Foto de ${event.name}`;
-                img.className = 'w-full h-full object-cover transition-transform duration-300 hover:scale-110';
-                img.loading = 'lazy'; // Carga diferida para mejorar rendimiento
-                img.onerror = function () {
-                    this.onerror = null;
-                    this.src = 'https://placehold.co/800x600/CCCCCC/FFFFFF?text=Error+al+cargar';
-                    this.alt = 'Imagen no disponible';
-                };
-                imgContainer.appendChild(img);
-                modalImageGrid.appendChild(imgContainer);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape" && modal && modal.classList.contains('modal-active')) {
+                    closeModal();
+                }
             });
 
-            modal.classList.remove('hidden');
-            modal.classList.add('modal-active');
-            document.body.style.overflow = 'hidden'; // Evitar scroll del fondo
-        }
+            // --- LÓGICA PARA RESALTAR ENLACE ACTIVO ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const currentPage = window.location.pathname.split('/').pop();
+            navLinks.forEach(link => {
+                const linkPage = link.getAttribute('href').split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('text-blue-600', 'font-bold');
+                    link.classList.remove('text-[#111418]', 'font-medium');
+                }
+            });
 
-        // Función para cerrar el modal
-        function closeModal() {
-            modal.classList.add('hidden');
-            modal.classList.remove('modal-active');
-            document.body.style.overflow = ''; // Restaurar scroll del fondo
-        }
-
-        // Event listeners
-        closeModalButton.addEventListener('click', closeModal);
-        // Cerrar modal al hacer clic fuera del contenido
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
+            // --- INICIALIZACIÓN ---
+            renderEventCards();
         });
-        // Cerrar modal con la tecla Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && modal.classList.contains('modal-active')) {
-                closeModal();
-            }
-        });
-
-        // Toggle para menú móvil
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Renderizar las tarjetas de evento al cargar la página
-        document.addEventListener('DOMContentLoaded', renderEventCards);
     </script>
 </body>
 
